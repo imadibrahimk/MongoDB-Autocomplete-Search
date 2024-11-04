@@ -1,0 +1,5 @@
+.env
+data.js
+node_modules
+seedDatabase.js
+testConnection.js

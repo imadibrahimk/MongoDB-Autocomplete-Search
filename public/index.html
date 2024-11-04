@@ -1,0 +1,25 @@
+<!-- public/index.html -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Autocomplete Search Demo</title>
+  <script>
+    async function handleSearch(query) {
+      if (query.length > 0) {  // Fetch results as soon as a single letter is typed
+        const res = await fetch(`/search?q=${query}`);
+        const results = await res.json();
+        document.getElementById("results").innerHTML = results.map(item => `<li>${item}</li>`).join('');
+      } else {
+        document.getElementById("results").innerHTML = '';  // Clear suggestions if input is empty
+      }
+    }
+  </script>
+</head>
+<body>
+  <h1>Autocomplete Search Demo</h1>
+  <input type="text" onkeyup="handleSearch(this.value)" placeholder="Start typing...">
+  <ul id="results"></ul>
+</body>
+</html>
